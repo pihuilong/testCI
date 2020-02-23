@@ -4,4 +4,4 @@ services:
 - docker
 
 script: 
-- docker build -t test_ci:latest
+- docker build .
