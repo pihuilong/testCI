@@ -1,0 +1,24 @@
+{
+  "name": "undefined",
+  "version": "0.0.0",
+  "main": "src/bin/www.js",
+  "repository": "git@github.com:hk01-digital/pua-media-api-gateway.git",
+  "license": "UNLICENSED",
+  "private": true,
+  "engines": {
+    "node": ">=8.7.0",
+    "npm": ">=5.3.0",
+    "yarn": ">=1.2.0"
+  },
+  "scripts": {
+    "start": "node ./src/bin/www",
+    "dev": "nodemon ./src/bin/www",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "lint": "eslint ./src",
+    "test": "jest",
+    "test:cvg": "jest --coverage"
+  },
+  "devDependencies": {
+    "jest": "^25.1.0"
+  }
+}
