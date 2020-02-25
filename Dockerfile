@@ -1,10 +1,8 @@
-FROM ubuntu:latest
+FROM node:12
 
 COPY . /app
-
 WORKDIR /app
 
-RUN apk add --no-cache --update \
-    nodejs yarn
+RUN npm install -g -s --no-progress yarn
 
 RUN yarn install
