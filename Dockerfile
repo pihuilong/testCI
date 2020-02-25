@@ -1,12 +1,8 @@
-FROM alpine:latest
+FROM node:12
 
-WORKDIR /build
-
-RUN apk add --no-cache --update \
-    nodejs yarn
+COPY . /app
+WORKDIR /app
+RUN npm -v && node -v
+RUN yarn -v
 
 RUN yarn install
-
-COPY ./ /build
-
-WORKDIR /build
