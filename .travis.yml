@@ -5,5 +5,5 @@ services:
 
 script: 
 - docker build .
-- if ["$TRAVIS_BRANCH" = "master"] && ["$TRAVIS_PULL_REQUEST" = "false"]; then
+- if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
   echo "Deploying..."; else echo "Not master branch, won't deploy"; fi
