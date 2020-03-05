@@ -4,6 +4,6 @@ services:
 - docker
 
 script: 
-- docker build .
+- docker build ./app
 - if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
   echo "Deploying..."; else echo "Not master branch, won't deploy"; fi
