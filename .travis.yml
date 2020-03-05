@@ -1,9 +1,27 @@
-language: bash
-sudo: required
+sudo: enabled
 services:
-- docker
+  - docker
+language: node_js
+node_js:
+  - "12"
+before_install:
+  - curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.7.0/bin/linux/amd64/kubectl && chmod +x kubectl && sudo mv kubectl /usr/local/bin/
+  - curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && chmod +x skaffold && sudo mv skaffold /usr/local/bin/
 
-script: 
-- docker build ./app
-- if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
-  echo "Deploying..."; else echo "Not master branch, won't deploy"; fi
+install:
+  - yarn install
+script:
+  - yarn test
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - mkdir ${HOME}/.kube
+  - cp ./k8s/config.yaml ${HOME}/.kube/config
+  - cd ${HOME}/.kube
+  - sed -i 's/KUBE_CLUSTER_NAME/'"$KUBE_CLUSTER_NAME"'/g' config
+  - sed -i 's/KUBE_CLUSTER_CERTIFICATE/'"$KUBE_CLUSTER_CERTIFICATE"'/g' config
+  - sed -i 's/KUBE_CLIENT_CERTIFICATE/'"$KUBE_CLIENT_CERTIFICATE"'/g' config
+  - sed -i 's/KUBE_CLIENT_KEY/'"$KUBE_CLIENT_KEY"'/g' config
+  - sed -i 's/KUBE_ADMIN_PWD/'"$KUBE_ADMIN_PWD"'/g' config
+  - kubectl config use-context $KUBE_CLUSTER_NAME
+  - cd $TRAVIS_BUILD_DIR
+  - skaffold run
