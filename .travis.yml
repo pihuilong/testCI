@@ -16,7 +16,6 @@ script:
 after_success:
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 - pwd
-- ls -a
 - mkdir ${HOME}/.kube
 - cp ./k8s/config.yaml ${HOME}/.kube/config
 - cat ${HOME}/.kube/config
@@ -28,7 +27,7 @@ after_success:
 - sed -i 's/KUBE_ADMIN_PWD/'"$KUBE_ADMIN_PWD"'/g' config
 - kubectl version
 - kubectl config use-context $KUBE_CLUSTER_NAME
-- pwd
+- cd ${HOME}/build/pihuilong/testCI
 - skaffold run
 env:
   global:
