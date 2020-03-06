@@ -15,6 +15,8 @@ script:
 - yarn --cwd ./app test
 after_success:
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- pwd
+- ls -a
 - mkdir ${HOME}/.kube
 - cp ./k8s/config.yaml ${HOME}/.kube/config
 - cat ${HOME}/.kube/config
