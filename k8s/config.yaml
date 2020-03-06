@@ -1,47 +1,19 @@
 apiVersion: v1
-kind: Service
-metadata:
-  name: test-ci-service
-  labels:
-    app: testci
-spec:
-  type: NodePort
-  ports:
-    - port: 3000
-      name: test-ci-port
-  selector:
-    app: testci
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: test-ci-deployment
-  labels:
-    app: testci
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: testci
-  template:
-    metadata:
-      labels:
-        app: testci
-    spec:
-      containers:
-      - name: test-ci-containers
-        image: docker.io/hiram1994/test-ci
-        env:
-          - name: NODE_ENV
-            value: production
-        ports:
-        - containerPort: 3000
-
-# apiVersion: v1
-# kind: Pod
-# metadata:
-#   name: test-ci
-# spec:
-#   containers:
-#   - name: test-ci
-#     image: docker.io/hiram1994/test-ci
+clusters:
+- cluster:
+    certificate-authority: /Users/hirampi/.minikube/ca.crt
+    server: https://192.168.64.4:8443
+  name: minikube
+contexts:
+- context:
+    cluster: minikube
+    user: minikube
+  name: minikube
+current-context: minikube
+kind: Config
+preferences: {}
+users:
+- name: minikube
+  user:
+    client-certificate: /Users/hirampi/.minikube/client.crt
+    client-key: /Users/hirampi/.minikube/client.key
