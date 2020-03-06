@@ -14,14 +14,17 @@ script:
   - yarn --cwd ./app test
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - echo "$DOCKER_PASSWORD"
   - mkdir ${HOME}/.kube
   - cp ./k8s/config.yaml ${HOME}/.kube/config
+  - cat ${HOME}/.kube/config
   - cd ${HOME}/.kube
   - sed -i 's/KUBE_CLUSTER_NAME/'"$KUBE_CLUSTER_NAME"'/g' config
   - sed -i 's/KUBE_CLUSTER_CERTIFICATE/'"$KUBE_CLUSTER_CERTIFICATE"'/g' config
   - sed -i 's/KUBE_CLIENT_CERTIFICATE/'"$KUBE_CLIENT_CERTIFICATE"'/g' config
   - sed -i 's/KUBE_CLIENT_KEY/'"$KUBE_CLIENT_KEY"'/g' config
   - sed -i 's/KUBE_ADMIN_PWD/'"$KUBE_ADMIN_PWD"'/g' config
+  - kubectl version
   - kubectl config use-context $KUBE_CLUSTER_NAME
   - cd $TRAVIS_BUILD_DIR
   - skaffold run
