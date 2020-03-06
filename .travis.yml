@@ -10,8 +10,8 @@ before_install:
 
 install:
   - yarn --cwd ./app install
-# script:
-  # - yarn --cwd ./app test
+script:
+  - yarn --cwd ./app test
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - mkdir ${HOME}/.kube
