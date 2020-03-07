@@ -15,7 +15,7 @@ script:
 - yarn --cwd ./app test
 after_success:
 - if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
-  ./scripts/deploy_to_k8s.sh; else echo "Not master branch, skip deploy..."; fi
+  ./scripts/deploy_to_k8s.sh; else echo "Not merge operation to master branch, skip deploy..."; fi
 env:
   global:
   - secure: 3HTlxoFWpz1OeJYH3+O/tnu+Uz+vrim+6bZdFM8w/FqaHQRFkCoV24cNGh0YXzSnrnOYplrCdXyt21bVcOHvn3YzZBauaANDzd5diK/ZbrZ0bckZnMu+NtEwAqrSdDQ9XUQ5kKjVcwAB/TdNFowejBcNwElQpJIHB6o8Qp9dF87t7cUVHmWniqE8+8tJQsn/+FA2DuZEbbOqBzWJIZUUc4DerU9DRUXG+H70Op3yt+HLy8Z1GDr8ey2l3zcf/73fH6DVjLjZ7N1Y4vCZu0b0Jp4+Xm6X6tk/wy1VCxf+J1LNEbzBH4Im+vL34TNSoDCIXFqseXP7SUkyfDDdwgG+STGUBaHfRJ3rdgXEEm0Psr7GZsNsIo24WFLDWqqnPyfYwI71FB7OG+wBtfK5Jnev7t8FdLx6WE2b7kg/D93L7iIvl+a27gLixGwaS6+YqJm3Cm74YAgnz7AyheY+KnebArPXPABrasrQwmJ/yPO+WBrK4kCBdpwLAoAS/4FlmMBDXDimRXDpBTjnLKYmHDBkzlsq+fn8QWYkSAC6tnC4aYeJxMkfsgC2TLrGyavgxgVVOFEuEY6zlR9iCaiqUbjjLitwyU73w/q6KY6AP0kH0qBvTqFRGN0cTE9RbRO1281+XwOWz6C4GduUnXNAAoDVPCI0h6cjflQlO2tUhYYCoE8=
