@@ -4,7 +4,6 @@ metadata:
   name: testci
 build:
   local:
-      push: true
       useDockerCLI: true
   artifacts:
   - image: docker.io/hiram1994/test-ci
