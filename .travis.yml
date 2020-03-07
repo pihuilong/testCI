@@ -27,7 +27,7 @@ after_success:
 - cat ./config   #Warn: remove it later
 - kubectl version
 - kubectl config use-context $KUBE_CLUSTER_NAME
-- kubectl version
+- kubectl cluster-info
 - cd ${TRAVIS_BUILD_DIR}
 - skaffold run
 env:
