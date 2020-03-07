@@ -29,6 +29,7 @@ after_success:
 - kubectl config use-context $KUBE_CLUSTER_NAME
 - kubectl cluster-info
 - cd ${TRAVIS_BUILD_DIR}
+- skaffold diagnose
 - skaffold run --tail
 env:
   global:
