@@ -1,19 +1,19 @@
 apiVersion: v1
 clusters:
 - cluster:
-    certificate-authority: /Users/hirampi/.minikube/ca.crt
-    server: https://192.168.64.4:8443
-  name: minikube
+    certificate-authority-data: KUBE_CLUSTER_CERTIFICATE
+    server: KUBE_CLUSTER_SERVER
+  name: KUBE_CLUSTER_NAME
 contexts:
 - context:
-    cluster: minikube
-    user: minikube
-  name: minikube
-current-context: minikube
+    cluster: KUBE_CLUSTER_NAME
+    user: admin
+  name: microk8s
+current-context: microk8s
 kind: Config
 preferences: {}
 users:
-- name: minikube
+- name: admin
   user:
-    client-certificate: /Users/hirampi/.minikube/client.crt
-    client-key: /Users/hirampi/.minikube/client.key
+    username: admin
+    password: KUBE_ADMIN_PWD
