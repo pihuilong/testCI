@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-ci-service
+  labels:
+    app: testci
+spec:
+  type: NodePort
+  ports:
+    - port: 3000
+      name: test-ci-port
+  selector:
+    app: testci
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-ci-deployment
+  labels:
+    app: testci
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testci
+  template:
+    metadata:
+      labels:
+        app: testci
+    spec:
+      containers:
+      - name: test-ci-containers
+        image: docker.io/hiram1994/test-ci
+        env:
+          - name: NODE_ENV
+            value: production
+        ports:
+        - containerPort: 3000
+
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: test-ci
+# spec:
+#   containers:
+#   - name: test-ci
+#     image: docker.io/hiram1994/test-ci
