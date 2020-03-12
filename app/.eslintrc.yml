@@ -1,0 +1,34 @@
+env:
+  node: true
+  es6: true
+extends:
+  - airbnb-base
+globals:
+  Atomics: readonly
+  SharedArrayBuffer: readonly
+parserOptions:
+  ecmaVersion: 2018
+rules:
+  no-unused-vars:
+    - error
+    # For expressjs error handler
+    - argsIgnorePattern: (res|req|next)
+  no-underscore-dangle:
+    - error
+    - allow:
+        - _
+        - __
+        - _id
+        - _v
+  no-multiple-empty-lines:
+    - error
+    - max: 1
+      maxBOF: 1
+  no-trailing-spaces:
+    - error
+    - skipBlankLines: true
+  no-console:
+    - error
+  max-len:
+    - warn
+    - 100
