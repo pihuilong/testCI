@@ -1,0 +1,39 @@
+env:
+  node: true
+  es6: true
+extends:
+  - airbnb-base
+  - plugin:jest/recommended
+  - prettier
+parserOptions:
+  ecmaVersion: 9
+  sourceType: script
+rules:
+  prettier/prettier:
+    - error
+  no-unused-vars:
+    - error
+    # For expressjs error handler
+    - argsIgnorePattern: (res|req|next)
+  no-underscore-dangle:
+    - error
+    - allow:
+        - _
+        - __
+        - _id
+        - _v
+  no-multiple-empty-lines:
+    - error
+    - max: 1
+      maxBOF: 1
+  no-trailing-spaces:
+    - error
+    - skipBlankLines: true
+  no-console:
+    - error
+  max-len:
+    - warn
+    - 100
+plugins:
+  - jest
+  - prettier
