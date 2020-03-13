@@ -12,8 +12,8 @@
     "yarn": ">=1.2.0"
   },
   "scripts": {
-    "start": "node ./src/bin/www",
-    "dev": "nodemon ./src/bin/www",
+    "start": "node --experimental-modules ./src/bin/www",
+    "dev": "nodemon --experimental-modules ./src/bin/www",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "lint": "eslint ./src",
     "test": "jest",
