@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable no-plusplus */
 const http = require("http");
 
 const port = 3000;

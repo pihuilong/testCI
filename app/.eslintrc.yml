@@ -3,13 +3,14 @@ env:
   es6: true
 extends:
   - airbnb-base
+  - plugin:jest/recommended
   - prettier
 parserOptions:
   ecmaVersion: 9
   sourceType: script
 rules:
-  # prettier/prettier:
-  #   - error
+  prettier/prettier:
+    - error
   no-unused-vars:
     - error
     # For expressjs error handler
@@ -34,4 +35,5 @@ rules:
     - warn
     - 100
 plugins:
+  - jest
   - prettier
