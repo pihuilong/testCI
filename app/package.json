@@ -19,9 +19,18 @@
     "test": "jest",
     "test:cvg": "jest --coverage"
   },
+  "lint-staged": {
+    "*.js": [
+      "pretty-quick --staged",
+      "eslint --fix",
+      "git add"
+    ]
+  },
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-push": "yarn test"
     }
   },
   "devDependencies": {
@@ -35,6 +44,9 @@
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^4.2.3",
     "jest": "^25.1.0",
-    "prettier": "^1.19.1"
+    "lint-staged": "^10.0.8",
+    "pre-commit": "^1.2.2",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1"
   }
 }
