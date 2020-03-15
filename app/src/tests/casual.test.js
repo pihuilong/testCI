@@ -1,6 +1,10 @@
 /* eslint-disable no-console */
+const { add } = require("../temp");
+
 describe("Empty test for test", () => {
-  it("should do nothing and pass", () => {
-    console.log("everything works fine...");
+  it("should return total of two numbers", () => {
+    const total = add(2, 3);
+
+    expect(total).toBe(5);
   });
 });
