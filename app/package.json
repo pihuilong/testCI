@@ -5,15 +5,15 @@
   "repository": "",
   "license": "UNLICENSED",
   "private": true,
-  "type": "module",
+  "type": "commonjs",
   "engines": {
     "node": ">=8.7.0",
     "npm": ">=5.3.0",
     "yarn": ">=1.2.0"
   },
   "scripts": {
-    "start": "node --experimental-modules ./src/bin/www",
-    "dev": "nodemon --experimental-modules ./src/bin/www",
+    "start": "node ./src/bin/www",
+    "dev": "nodemon ./src/bin/www",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "lint": "eslint ./src",
     "test": "jest",
@@ -22,8 +22,7 @@
   "lint-staged": {
     "*.js": [
       "pretty-quick --staged",
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ]
   },
   "husky": {
@@ -32,6 +31,20 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-push": "yarn test"
     }
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "<rootDir>/src/config"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/tests/setupTests.js"
+    ],
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/src/drivers/",
+      "/__fixtures__/"
+    ]
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",

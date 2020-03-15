@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable no-plusplus */
-import * as http from "http";
+const http = require("http");
 
 const port = 3000;
 
