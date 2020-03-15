@@ -3,7 +3,6 @@
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 mkdir ${HOME}/.kube
 cp ./k8s/config.yaml ${HOME}/.kube/config
-cat ${HOME}/.kube/config
 cd ${HOME}/.kube
 sed -i 's/KUBE_CLUSTER_NAME/'"$KUBE_CLUSTER_NAME"'/g' config
 sed -i 's/KUBE_CLUSTER_CERTIFICATE/'"$KUBE_CLUSTER_CERTIFICATE"'/g' config
