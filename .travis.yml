@@ -9,11 +9,11 @@ before_install:
   && chmod +x kubectl && sudo mv kubectl /usr/local/bin/
 - curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64
   && chmod +x skaffold && sudo mv skaffold /usr/local/bin/
--  bash <(curl -s https://codecov.io/bash) -t "${CODECOV_TOKEN}" # for uploading coverage report to codecov
 install:
 - yarn --cwd ./app install
 script:
 - yarn --cwd ./app test:cvg
+- bash <(curl -s https://codecov.io/bash) -t "${CODECOV_TOKEN}" # for uploading coverage report to codecov
 after_success:
 - if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
   chmod +x ./scripts/deploy_to_k8s.sh && ./scripts/deploy_to_k8s.sh; else
