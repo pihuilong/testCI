@@ -32,6 +32,20 @@
       "pre-push": "yarn test"
     }
   },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "<rootDir>/src/config"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/tests/setupTests.js"
+    ],
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/src/drivers/",
+      "/__fixtures__/"
+    ]
+  },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
